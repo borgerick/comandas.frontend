@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Adicionar Pedido</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Adicionar Pedido</h2>
+
+    <div class="form-area">
+
+        <label for="mesa">Número da Mesa</label>
+        <input id="mesa" type="number" placeholder="Ex: 3">
+
+        <label for="cliente">Nome do Cliente</label>
+        <input id="cliente" type="text" placeholder="Ex: João">
+
+        <label for="itens">Itens do Pedido</label>
+        <textarea id="itens" placeholder="Ex: Coxinha, Suco, etc"></textarea>
+
+        <label for="total">Valor Total</label>
+        <input id="total" type="number" placeholder="Ex: 25.90">
+
+        <div class="actions">
+            <button class="btn" onclick="salvarPedido()">Salvar</button>
+            <button class="btVoltar" onclick="voltar()">Voltar</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

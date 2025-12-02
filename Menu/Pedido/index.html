@@ -2,12 +2,27 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Pedido</title>
+    <title>Gerenciar Pedidos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tela de Pedido</h1>
 
-    <a href="../menu/index.html">Voltar ao Menu</a>
+    <div class="container">
+        <h2>Gerenciar Pedidos</h2>
 
+        <div class="botoes">
+            <button class="btn" onclick="abrirAdicionar()">Adicionar Pedido</button>
+            <button class="btn" onclick="abrirEditar()">Editar Pedido</button>
+            <button class="btn" onclick="abrirExcluir()">Excluir Pedido</button>
+        </div>
+
+        <div class="tabela-area" id="tabela-area">
+            <p>A tabela de pedidos será exibida aqui.</p>
+        </div>
+
+        <a href="../index.html" class="voltar">Voltar</a>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

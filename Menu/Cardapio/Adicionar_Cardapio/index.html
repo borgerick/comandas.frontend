@@ -1,41 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adicionar Item ao Cardápio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Adicionar Item</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="container">
-    <h1>Adicionar Item ao Cardápio</h1>
+<div class="container">
+    <h2>Adicionar Item</h2>
 
-    <input type="text" id="nome" placeholder="Nome do produto">
-    <input type="number" id="preco" placeholder="Preço">
-    <select id="preparo">
-      <option value="">Possui preparo?</option>
-      <option value="Sim">Sim</option>
-      <option value="Não">Não</option>
-    </select>
-    <input type="text" id="categoria" placeholder="Categoria (ex: Bebida, Lanche...)">
+    <div class="form-area">
+        <input id="nome" type="text" placeholder="Nome do item">
+        <input id="preco" type="number" placeholder="Preço">
+        <textarea id="preparo" placeholder="Modo de preparo"></textarea>
+        <input id="categoria" type="text" placeholder="Categoria">
+    </div>
 
-    <button onclick="adicionarItem()">Adicionar</button>
+    <button class="btn" onclick="adicionarItem()">Salvar</button>
 
-    <h2>Itens no Cardápio</h2>
-    <table id="tabela">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Preço</th>
-          <th>Preparo</th>
-          <th>Categoria</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+    <a href="../index.html" class="voltar">Voltar</a>
+</div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

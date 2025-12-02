@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Editar Usuário</title>
+  <meta charset="utf-8">
+  <title>Editar Usuário</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Editar Usuário</h1>
+  <div class="container">
+    <h2>Editar Usuário</h2>
 
-    <form>
-        <label>Selecione o usuário:</label>
-        <select>
-            <option>admin</option>
-            <option>usuario1</option>
-        </select>
+    <div class="form-area">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text">
 
-        <label>Novo Nome:</label>
-        <input type="text">
+      <label for="login">Login</label>
+      <input id="login" type="text">
 
-        <label>Nova Senha:</label>
-        <input type="password">
+      <label for="cargo">Cargo</label>
+      <input id="cargo" type="text">
 
-        <button type="button" onclick="alert('Usuário editado!')">Salvar</button>
-    </form>
+      <label for="senha">Senha</label>
+      <input id="senha" type="password">
 
-    <button onclick="window.location.href='index.html'">Voltar</button>
+      <div class="actions">
+        <button class="btn" onclick="salvarEdicao()">Salvar Alterações</button>
+        <button class="btVoltar" onclick="voltar()">Voltar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

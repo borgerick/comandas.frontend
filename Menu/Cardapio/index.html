@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Cardápio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tela de Cardápio</h1>
 
-    <a href="../menu/index.html">Voltar ao Menu</a>
+    <div class="container">
+        <h2>Gerenciar Cardápio</h2>
 
+        <button class="btn" onclick="abrirAdicionar()">Adicionar Item</button>
+        <button class="btn" onclick="abrirEditar()">Editar Item</button>
+        <button class="btn" onclick="abrirExcluir()">Excluir Item</button>
+
+       
+        <div class="tabela-area">
+        </div>
+
+        <a href="../index.html" class="voltar">Voltar</a>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

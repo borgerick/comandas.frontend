@@ -1,27 +1,29 @@
+// Carrega o cardápio salvo no navegador
 let cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
 
-function mostrarItens() {
-  const tbody = document.querySelector("#tabela tbody");
-  tbody.innerHTML = "";
-  cardapio.forEach((item, i) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${item.nome}</td>
-      <td>R$ ${item.preco}</td>
-      <td>${item.preparo}</td>
-      <td>${item.categoria}</td>
-      <td><button onclick="excluir(${i})">Excluir</button></td>
-    `;
-    tbody.appendChild(tr);
-  });
+// Pega o ID enviado pela URL (ex: .../index.html?id=1)
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+// Se existir um ID válido, preenche os campos
+if (id !== null && cardapio[id]) {
+    document.getElementById("nome").value = cardapio[id].nome;
+    document.getElementById("preco").value = cardapio[id].preco;
+    document.getElementById("preparo").value = cardapio[id].preparo;
+    document.getElementById("categoria").value = cardapio[id].categoria;
 }
 
-function excluir(i) {
-  if (confirm("Tem certeza que deseja excluir este item?")) {
-    cardapio.splice(i, 1);
+function excluir() {
+    if (!confirm("Tem certeza que deseja excluir este item?")) return;
+
+    // Remove o item do array
+    cardapio.splice(id, 1);
+
+    // Atualiza o localStorage
     localStorage.setItem("cardapio", JSON.stringify(cardapio));
-    mostrarItens();
-  }
-}
 
-mostrarItens();
+    alert("Item excluído com sucesso!");
+
+    // Volta para o cardápio
+    window.location.href = "../index.html";
+}

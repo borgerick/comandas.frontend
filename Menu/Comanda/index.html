@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Comanda</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tela de Comanda</h1>
 
-    <a href="../menu/index.html">Voltar ao Menu</a>
+    <div class="container">
+        <h2>Gerenciar Comanda</h2>
 
+        <button class="btn" onclick="abrirAdicionar()">Adicionar Comanda</button>
+        <button class="btn" onclick="abrirEditar()">Editar Comanda</button>
+        <button class="btn" onclick="abrirExcluir()">Excluir Comanda</button>
+
+        <div class="tabela-area"></div>
+
+        <a href="../index.html" class="voltar">Voltar</a>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

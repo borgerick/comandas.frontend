@@ -2,12 +2,27 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Usuário</title>
+    <title>Gerenciar Usuários</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tela de Usuário</h1>
 
-    <a href="../menu/index.html">Voltar ao Menu</a>
+    <div class="container">
+        <h2>Gerenciar Usuários</h2>
 
+        <div class="botoes">
+            <button class="btn" onclick="abrirAdicionar()">Adicionar Usuário</button>
+            <button class="btn" onclick="abrirEditar()">Editar Usuário</button>
+            <button class="btn" onclick="abrirExcluir()">Excluir Usuário</button>
+        </div>
+
+        <div class="tabela-area" id="tabela-area">
+            <p>A tabela de usuários será exibida aqui.</p>
+        </div>
+
+        <a href="../index.html" class="voltar">Voltar</a>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

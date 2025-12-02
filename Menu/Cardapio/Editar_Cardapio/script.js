@@ -1,35 +1,30 @@
 let cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
 
-function mostrarItens() {
-  const tbody = document.querySelector("#tabela tbody");
-  tbody.innerHTML = "";
-  cardapio.forEach((item, i) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td><input value="${item.nome}" id="nome-${i}"></td>
-      <td><input type="number" value="${item.preco}" id="preco-${i}"></td>
-      <td>
-        <select id="preparo-${i}">
-          <option ${item.preparo === "Sim" ? "selected" : ""}>Sim</option>
-          <option ${item.preparo === "Não" ? "selected" : ""}>Não</option>
-        </select>
-      </td>
-      <td><input value="${item.categoria}" id="categoria-${i}"></td>
-      <td><button onclick="salvar(${i})">Salvar</button></td>
-    `;
-    tbody.appendChild(tr);
-  });
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+// Preenche os campos ao abrir a tela
+if (id !== null && cardapio[id]) {
+    document.getElementById("nome").value = cardapio[id].nome;
+    document.getElementById("preco").value = cardapio[id].preco;
+    document.getElementById("preparo").value = cardapio[id].preparo;
+    document.getElementById("categoria").value = cardapio[id].categoria;
 }
 
-function salvar(i) {
-  const nome = document.getElementById(`nome-${i}`).value;
-  const preco = document.getElementById(`preco-${i}`).value;
-  const preparo = document.getElementById(`preparo-${i}`).value;
-  const categoria = document.getElementById(`categoria-${i}`).value;
+function salvarEdicao() {
+    const nome = document.getElementById("nome").value;
+    const preco = document.getElementById("preco").value;
+    const preparo = document.getElementById("preparo").value;
+    const categoria = document.getElementById("categoria").value;
 
-  cardapio[i] = { nome, preco, preparo, categoria };
-  localStorage.setItem("cardapio", JSON.stringify(cardapio));
-  alert("Item atualizado com sucesso!");
+    if (!nome || !preco || !preparo || !categoria) {
+        alert("Preencha todos os campos!");
+        return;
+    }
+
+    cardapio[id] = { nome, preco, preparo, categoria };
+    localStorage.setItem("cardapio", JSON.stringify(cardapio));
+
+    alert("Item editado com sucesso!");
+    window.location.href = "../index.html";
 }
-
-mostrarItens();

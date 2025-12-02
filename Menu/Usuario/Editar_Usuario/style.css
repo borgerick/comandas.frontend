@@ -1,0 +1,36 @@
+/* Reaproveita o mesmo visual */
+* { box-sizing: border-box; }
+html,body{height:100%;}
+body {
+  background-color: #e3f2fd;
+  font-family: Arial, sans-serif;
+  margin:0;
+  display:flex;
+  justify-content:center;
+}
+.container {
+  width: 90%;
+  max-width: 520px;
+  margin: 34px auto;
+  padding: 25px;
+  background:#fff;
+  border-radius:12px;
+  border:1px solid rgba(255,179,128,0.54);
+  box-shadow:0 6px 20px rgba(0,0,0,0.06);
+}
+h2 { text-align:center; margin:0 0 18px 0; font-size:1.4rem; }
+.form-area { display:flex; flex-direction:column; gap:12px; margin-top:8px; }
+label{ font-weight:600; font-size:0.95rem; }
+input[type="text"], input[type="password"] {
+  width:100%; padding:10px 12px; border-radius:10px; border:2px solid #ddd; font-size:15px;
+}
+.actions { display:flex; gap:12px; justify-content:center; margin-top:8px; }
+.btn, .btVoltar {
+  background:#4c4141; color:#fff; padding:10px 16px; border-radius:10px; font-weight:700; border:none; cursor:pointer;
+}
+.btn:hover, .btVoltar:hover { transform:translateY(-2px); background:#ffd9bf; color:#222; }
+.btVoltar { background:#000; }
+@media (max-width:720px){
+  .container{width:94%; padding:18px;}
+  .btn, .btVoltar{width:100%;}
+}

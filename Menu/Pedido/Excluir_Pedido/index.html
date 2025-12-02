@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Excluir Pedido</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Excluir Pedido</h2>
+
+    <div class="form-area">
+
+        <label>Número da Mesa</label>
+        <input id="mesa" disabled>
+
+        <label>Cliente</label>
+        <input id="cliente" disabled>
+
+        <label>Itens</label>
+        <textarea id="itens" disabled></textarea>
+
+        <label>Total</label>
+        <input id="total" disabled>
+
+        <div class="actions">
+            <button class="btn btn-excluir" onclick="excluir()">Excluir</button>
+            <button class="btVoltar" onclick="voltar()">Cancelar</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+/* style.css específico para Mesa (mesmo visual do padrão) */
+
+* {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+body {
+  background-color: #e3f2fd;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+}
+
+/* Container central */
+.container {
+  width: 90%;
+  max-width: 980px;
+  margin: 34px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(255,179,128,0.54);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* Título */
+h2 {
+  text-align: center;
+  color: #000;
+  margin: 0 0 18px 0;
+  font-size: 1.5rem;
+}
+
+/* Grupo de botões (usado nas telas de gerenciamento) */
+.botoes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 18px 0 24px 0;
+}
+
+/* Botões principais */
+.btn, button {
+  background-color: #4c4141;
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  transition: transform .12s ease, background-color .12s ease;
+  outline: none;
+}
+
+.btn:hover, button:hover {
+  transform: translateY(-2px);
+  background-color: #ffd9bf;
+  color: #222;
+}
+
+/* Botão pequeno para ações na tabela */
+.btn.small {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* Estilo específico para botão de excluir (destaque vermelho) */
+.btn-excluir, .btn-danger {
+  background: #b30000;
+  color: #fff;
+}
+
+/* Área que vai conter a tabela/lista de itens */
+.tabela-area {
+  width: 100%;
+  min-height: 150px;
+  height: auto;
+  border: 2px dashed #000000;
+  border-radius: 10px;
+  color: #666;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+}
+
+/* Tabela simples */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th, .table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  font-size: 0.95rem;
+}
+.table thead th {
+  background: #fafafa;
+  font-weight: 700;
+}
+
+/* Botão voltar como link estilizado */
+.voltar, .btVoltar {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background-color .12s ease, transform .12s ease;
+}
+.voltar:hover, .btVoltar:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+/* Responsividade leve */
+@media (max-width: 720px) {
+  .container {
+    width: 94%;
+    padding: 18px;
+    margin: 16px auto;
+  }
+  .botoes {
+    flex-direction: column;
+  }
+  .btn {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .tabela-area {
+    height: auto;
+  }
+}
