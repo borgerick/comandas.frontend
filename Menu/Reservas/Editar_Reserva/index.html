@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Reserva</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Editar Reserva</h2>
+
+        <div class="form-area">
+            <input id="numeroMesa" type="number" placeholder="Número da Mesa">
+            <input id="nomeCliente" type="text" placeholder="Nome do Cliente">
+            <input id="telefone" type="text" placeholder="Telefone">
+            <input id="dataHoraReserva" type="datetime-local" placeholder="Data e Hora">
+        </div>
+
+        <button class="btn" onclick="salvarEdicao()">Salvar</button>
+
+        <a href="../index.html" class="voltar">Voltar</a>
+    </div>
+
+    <script src="../../api.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

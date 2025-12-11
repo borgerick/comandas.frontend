@@ -12,19 +12,19 @@ function salvarUsuario() {
     return;
   }
 
-  const usuarios = JSON.parse(localStorage.getItem(USUARIOS_KEY)) || [];
-
-  // opcional: checar login duplicado
-  const existe = usuarios.some(u => u.login === login);
-  if (existe) {
-    if (!confirm("Já existe um usuário com esse login. Deseja continuar e salvar mesmo assim?")) return;
+  try {
+    const payload = {
+      nome,
+      email: login,
+      senha
+    };
+    await Api.createUsuario(payload);
+    alert("Usuário adicionado com sucesso!");
+    window.location.href = "../index.html";
+  } catch (err) {
+    console.error(err);
+    alert('Erro ao adicionar usuário: ' + err.message);
   }
-
-  usuarios.push({ nome, login, cargo, senha });
-  localStorage.setItem(USUARIOS_KEY, JSON.stringify(usuarios));
-
-  alert("Usuário adicionado com sucesso!");
-  window.location.href = "../index.html";
 }
 
 function voltar() {

@@ -13,48 +13,50 @@ function abrirExcluir() {
 
 // (Opcional) Função para exibir lista de mesas no placeholder.
 // Se você quiser que a tabela já mostre dados do localStorage, descomente e adapte.
-document.addEventListener("DOMContentLoaded", function() {
+// Fetch list from API and render table
+document.addEventListener("DOMContentLoaded", async function () {
     const container = document.getElementById("tabela-area");
-    const mesas = JSON.parse(localStorage.getItem("mesas")) || [];
+    container.innerHTML = '<p>Carregando mesas...</p>';
+    try {
+        const mesas = await Api.getMesas();
+        if (!Array.isArray(mesas) || mesas.length === 0) {
+            container.innerHTML = '<p>Não há mesas cadastradas.</p>';
+            return;
+        }
 
-    if (mesas.length === 0) {
-        container.innerHTML = '<p>Não há mesas cadastradas. Clique em "Adicionar Mesa" para criar.</p>';
-        return;
-    }
-
-    // Cria uma tabela simples com Número / Capacidade / Status / Ações
-    const table = document.createElement("table");
-    table.className = "table";
-    table.innerHTML = `
-        <thead>
-            <tr>
-                <th>Nº Mesa</th>
-                <th>Capacidade</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    `;
-
-    const tbody = table.querySelector("tbody");
-    mesas.forEach((m, index) => {
-        const tr = document.createElement("tr");
-
-        tr.innerHTML = `
-            <td>${m.numeroMesa ?? index}</td>
-            <td>${m.capacidade ?? "-"}</td>
-            <td>${m.status ?? "livre"}</td>
-            <td>
-                <button class="btn small" onclick="window.location.href='./Editar_Mesa/index.html?id=${index}'">Editar</button>
-                <button class="btn small btn-excluir" onclick="window.location.href='./Excluir_Mesa/index.html?id=${index}'">Excluir</button>
-            </td>
+        const table = document.createElement("table");
+        table.className = "table";
+        table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Numero</th>
+                    <th>Situação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
         `;
 
-        tbody.appendChild(tr);
-    });
+        const tbody = table.querySelector("tbody");
+        mesas.forEach(m => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${m.id ?? '-'}</td>
+                <td>${m.numeroMesa ?? '-'}</td>
+                <td>${m.situacaoMesa ?? '-'}</td>
+                <td>
+                    <button class="btn small" onclick="window.location.href='./Editar_Mesa/index.html?id=${m.id}'">Editar</button>
+                    <button class="btn small btn-excluir" onclick="window.location.href='./Excluir_Mesa/index.html?id=${m.id}'">Excluir</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
 
-    container.innerHTML = "";
-    container.appendChild(table);
+        container.innerHTML = "";
+        container.appendChild(table);
+    } catch (err) {
+        container.innerHTML = `<p class='error'>Erro ao carregar mesas: ${err.message}</p>`;
+        console.error(err);
+    }
 });

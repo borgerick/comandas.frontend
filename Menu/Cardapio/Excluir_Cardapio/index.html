@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Excluir Item</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
-    <h2>Excluir Item</h2>
+    <div class="container">
+        <h2>Excluir Item</h2>
 
-    <div class="form-area">
-        <input id="nome" type="text" disabled>
-        <input id="preco" type="number" disabled>
-        <textarea id="preparo" disabled></textarea>
-        <input id="categoria" type="text" disabled>
+        <div class="form-area">
+            <input id="nome" type="text" disabled>
+            <input id="preco" type="number" disabled>
+            <textarea id="preparo" disabled></textarea>
+            <input id="categoria" type="text" disabled>
+        </div>
+
+        <button class="btn btn-excluir" onclick="excluir()">Excluir</button>
+
+        <a href="../index.html" class="voltar">Voltar</a>
     </div>
 
-    <button class="btn btn-excluir" onclick="excluir()">Excluir</button>
-
-    <a href="../index.html" class="voltar">Voltar</a>
-</div>
-
-<script src="script.js"></script>
+    <script src="../../api.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

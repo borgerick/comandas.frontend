@@ -1,6 +1,4 @@
-let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
-
-function salvarMesa() {
+async function salvarMesa() {
     const numero = document.getElementById("numero").value;
     const lugares = document.getElementById("lugares").value;
 
@@ -9,8 +7,16 @@ function salvarMesa() {
         return;
     }
 
-    mesas.push({ numero, lugares });
-    localStorage.setItem("mesas", JSON.stringify(mesas));
+    const payload = {
+        numeroMesa: Number(numero),
+        situacaoMesa: Number(lugares)
+    };
 
-    window.location.href = "../index.html";
+    try {
+        await Api.createMesa(payload);
+        window.location.href = '../index.html';
+    } catch (err) {
+        console.error(err);
+        alert('Erro ao salvar mesa: ' + err.message);
+    }
 }

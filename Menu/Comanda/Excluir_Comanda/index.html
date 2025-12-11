@@ -1,26 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Excluir Comanda</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
-    <h2>Excluir Comanda</h2>
+    <div class="container">
+        <h2>Excluir Comanda</h2>
 
-    <div class="form-group">
-        <label>ID da Comanda:</label>
-        <input type="number" id="idComanda">
+        <div class="form-group">
+            <label>ID da Comanda:</label>
+            <input type="number" id="idComanda" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>Número da Mesa:</label>
+            <input type="number" id="numeroMesa" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>Nome do Cliente:</label>
+            <input type="text" id="nomeCliente" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>Itens:</label>
+            <div id="itensContainer">
+                <table class="table" id="itensTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <button class="btn" onclick="excluir()">Excluir</button>
+
+        <a href="../index.html" class="voltar">Voltar</a>
     </div>
 
-    <button class="btn" onclick="excluir()">Excluir</button>
-
-    <a href="../index.html" class="voltar">Voltar</a>
-</div>
-
-<script src="script.js"></script>
+    <script src="../../api.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>

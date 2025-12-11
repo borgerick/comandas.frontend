@@ -11,59 +11,51 @@ function abrirExcluir() {
     window.location.href = "./Excluir_Pedido/index.html";
 }
 
-// Carregar pedidos armazenados no localStorage
-document.addEventListener("DOMContentLoaded", function () {
+// Fetch orders from the API and render
+document.addEventListener("DOMContentLoaded", async function () {
     const container = document.getElementById("tabela-area");
-    const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+    container.innerHTML = '<p>Carregando pedidos...</p>';
+    try {
+        const pedidos = await Api.getPedidosCozinha();
+        if (!Array.isArray(pedidos) || pedidos.length === 0) {
+            container.innerHTML = '<p>Não há pedidos cadastrados.</p>';
+            return;
+        }
 
-    if (pedidos.length === 0) {
-        container.innerHTML = '<p>Não há pedidos cadastrados.</p>';
-        return;
-    }
-
-    const table = document.createElement("table");
-    table.className = "table";
-
-    table.innerHTML = `
-        <thead>
-            <tr>
-                <th>Nº Pedido</th>
-                <th>Mesa</th>
-                <th>Cliente</th>
-                <th>Itens</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    `;
-
-    const tbody = table.querySelector("tbody");
-
-    pedidos.forEach((p, index) => {
-        const tr = document.createElement("tr");
-
-        const itensTexto = Array.isArray(p.itens)
-            ? p.itens.map(i => i.nome || i).join(", ")
-            : "-";
-
-        tr.innerHTML = `
-            <td>${p.numeroPedido ?? index}</td>
-            <td>${p.mesa ?? "—"}</td>
-            <td>${p.cliente ?? "—"}</td>
-            <td>${itensTexto}</td>
-            <td>R$ ${(p.total ?? 0).toFixed(2)}</td>
-            <td>${p.status ?? "pendente"}</td>
-            <td>
-                <button class="btn small" onclick="window.location.href='./Editar_Pedido/index.html?id=${index}'">Editar</button>
-                <button class="btn small btn-excluir" onclick="window.location.href='./Excluir_Pedido/index.html?id=${index}'">Excluir</button>
-            </td>
+        const table = document.createElement("table");
+        table.className = "table";
+        table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Comanda</th>
+                    <th>Itens</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
         `;
 
-        tbody.appendChild(tr);
-    });
+        const tbody = table.querySelector('tbody');
+        pedidos.forEach(p => {
+            const itensTexto = Array.isArray(p.itens) ? p.itens.map(i => i.comandaItemId || i.id || '-').join(', ') : '-';
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${p.id ?? '-'}</td>
+                <td>${p.comandaId ?? '-'}</td>
+                <td>${itensTexto}</td>
+                <td>
+                    <button class="btn small" onclick="window.location.href='./Editar_Pedido/index.html?id=${p.id}'">Editar</button>
+                    <button class="btn small btn-excluir" onclick="window.location.href='./Excluir_Pedido/index.html?id=${p.id}'">Excluir</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
 
-    container.innerHTML = "";
-    container.appendChild(table);
+        container.innerHTML = '';
+        container.appendChild(table);
+    } catch (err) {
+        container.innerHTML = `<p class='error'>Erro ao carregar: ${err.message}</p>`;
+        console.error(err);
+    }
 });

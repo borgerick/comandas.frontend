@@ -1,30 +1,46 @@
-let cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
-
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 // Preenche os campos ao abrir a tela
-if (id !== null && cardapio[id]) {
-    document.getElementById("nome").value = cardapio[id].nome;
-    document.getElementById("preco").value = cardapio[id].preco;
-    document.getElementById("preparo").value = cardapio[id].preparo;
-    document.getElementById("categoria").value = cardapio[id].categoria;
-}
+document.addEventListener('DOMContentLoaded', async function () {
+    if (!id) return;
+    try {
+        const item = await Api.getCardapioItem(id);
+        document.getElementById("nome").value = item.titulo || '';
+        document.getElementById("preco").value = item.preco ?? '';
+        document.getElementById("preparo").value = item.descricao || '';
+        document.getElementById("categoria").value = item.categoriaCardapioId ?? '';
+    } catch (err) {
+        console.error(err);
+        alert('Erro ao carregar item: ' + err.message);
+    }
+});
 
-function salvarEdicao() {
+async function salvarEdicao() {
     const nome = document.getElementById("nome").value;
     const preco = document.getElementById("preco").value;
     const preparo = document.getElementById("preparo").value;
     const categoria = document.getElementById("categoria").value;
 
-    if (!nome || !preco || !preparo || !categoria) {
-        alert("Preencha todos os campos!");
+    if (!nome || !preco) {
+        alert("Preencha os campos obrigatórios: Nome e Preço!");
         return;
     }
 
-    cardapio[id] = { nome, preco, preparo, categoria };
-    localStorage.setItem("cardapio", JSON.stringify(cardapio));
+    const payload = {
+        titulo: nome,
+        descricao: preparo || null,
+        preco: Number(preco),
+        possuiPreparo: !!(preparo && preparo.trim().length > 0),
+        categoriaCardapioId: categoria ? Number(categoria) : null
+    };
 
-    alert("Item editado com sucesso!");
-    window.location.href = "../index.html";
+    try {
+        await Api.updateCardapioItem(id, payload);
+        alert('Item atualizado com sucesso!');
+        window.location.href = '../index.html';
+    } catch (err) {
+        console.error(err);
+        alert('Erro ao atualizar: ' + err.message);
+    }
 }
