@@ -3,9 +3,12 @@
 * {
   box-sizing: border-box;
 }
-html, body {
+
+html,
+body {
   height: 100%;
 }
+
 body {
   background-color: #e3f2fd;
   font-family: Arial, sans-serif;
@@ -26,8 +29,8 @@ body {
   padding: 25px;
   background: #ffffff;
   border-radius: 12px;
-  border: 1px solid rgba(255,179,128,0.54);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(255, 179, 128, 0.54);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
 /* Título */
@@ -47,7 +50,8 @@ h2 {
 }
 
 /* Botões principais */
-.btn, button {
+.btn,
+button {
   background-color: #4c4141;
   color: #ffffff;
   padding: 10px 14px;
@@ -60,7 +64,8 @@ h2 {
   outline: none;
 }
 
-.btn:hover, button:hover {
+.btn:hover,
+button:hover {
   transform: translateY(-2px);
   background-color: #ffd9bf;
   color: #222;
@@ -74,7 +79,8 @@ h2 {
 }
 
 /* Estilo específico para botão de excluir (destaque vermelho) */
-.btn-excluir, .btn-danger {
+.btn-excluir,
+.btn-danger {
   background: #b30000;
   color: #fff;
 }
@@ -86,10 +92,10 @@ h2 {
   height: auto;
   border: 2px dashed #000000;
   border-radius: 10px;
-  color: #666;
+  color: #000000;
   padding: 12px;
   margin-bottom: 20px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
 }
 
 /* Tabela simples */
@@ -97,19 +103,23 @@ h2 {
   width: 100%;
   border-collapse: collapse;
 }
-.table th, .table td {
+
+.table th,
+.table td {
   padding: 10px 12px;
   border-bottom: 1px solid #eee;
   text-align: left;
   font-size: 0.95rem;
 }
+
 .table thead th {
   background: #fafafa;
   font-weight: 700;
 }
 
 /* Botão voltar como link estilizado */
-.voltar, .btVoltar {
+.voltar,
+.btVoltar {
   display: inline-block;
   background: #000;
   color: #fff;
@@ -121,7 +131,9 @@ h2 {
   border: none;
   transition: background-color .12s ease, transform .12s ease;
 }
-.voltar:hover, .btVoltar:hover {
+
+.voltar:hover,
+.btVoltar:hover {
   background: #333;
   transform: translateY(-2px);
 }
@@ -133,13 +145,16 @@ h2 {
     padding: 18px;
     margin: 16px auto;
   }
+
   .botoes {
     flex-direction: column;
   }
+
   .btn {
     width: 100%;
     border-radius: 10px;
   }
+
   .tabela-area {
     height: auto;
   }
